@@ -1,6 +1,5 @@
 d3.json('data/samples.json').then((data)=>{
     //Create Horizontal bar chart by ID
-    console.log(data)
   
     var filteredData = data.samples[0];
     console.log(filteredData);
@@ -38,6 +37,23 @@ d3.json('data/samples.json').then((data)=>{
         orientation: 'h',
         text: barHover
     };
-    var data = [trace1];
-    Plotly.newPlot("bar", data);
+    var histoData = [trace1];
+    Plotly.newPlot("bar", histoData);
+
+    // Create a bubble chart that displays each sample
+
+    var trace1 = {
+        x: otu_ids,
+        y: sample_values,
+        mode: 'markers',
+        marker: {
+          color: otu_ids,
+          size: sample_values
+        }
+      };
+      
+      var bubbleData = [trace1];
+    
+      
+      Plotly.newPlot('bubble', bubbleData);
 });
