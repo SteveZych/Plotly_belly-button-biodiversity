@@ -56,4 +56,14 @@ d3.json('data/samples.json').then((data)=>{
     
       
       Plotly.newPlot('bubble', bubbleData);
+
+
+      // Display samples metadata
+
+      var metaData = data.metadata[0];
+      console.log(metaData);
+      demographics = d3.select("sample-metadata").
+      Object.entries(metaData).forEach(([key, value]) => {demographics.append('h6').text(`${key}: ${value}`)});
+      
+      
 });
