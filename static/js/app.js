@@ -1,6 +1,15 @@
 d3.json('data/samples.json').then((data)=>{
+    
+    //Update when new sample is selected
+    var names = data.names;
+    console.log(names);
+    names.forEach(name => d3.select("#selDataset").append('option').text(name));
+
+    function optionChanged() {
+        
+    };
+    
     //Create Horizontal bar chart by ID
-  
     var filteredData = data.samples[0];
     console.log(filteredData);
   
@@ -53,7 +62,6 @@ d3.json('data/samples.json').then((data)=>{
       };
       
       var bubbleData = [trace1];
-    
       
       Plotly.newPlot('bubble', bubbleData);
 
@@ -62,7 +70,7 @@ d3.json('data/samples.json').then((data)=>{
 
       var metaData = data.metadata[0];
       console.log(metaData);
-      demographics = d3.select("sample-metadata").
+      demographics = d3.selectAll("#sample-metadata");
       Object.entries(metaData).forEach(([key, value]) => {demographics.append('h6').text(`${key}: ${value}`)});
       
       
